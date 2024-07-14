@@ -33,12 +33,13 @@
               venv/bin/pip install poetry==1.8.3
             fi
             
+            export PATH=bin:$PATH
+            echo $PATH
+            
             # Activate venv
             source ./venv/bin/activate
             echo "✅ Activated venv"
 
-            export PATH=bin:$PATH
-            echo $PATH
 
              # Verify Poetry installation
             poetry --version
