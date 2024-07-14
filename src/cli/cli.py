@@ -31,3 +31,7 @@ def create_tmux_session(session_name: str, windows: List[str]) -> None:
             os.system(f"tmux select-window -t {session_name}:server")
 
         os.system(f"tmux attach -t {session_name}")
+
+
+if __name__ == "__main__":
+    create_tmux_session()

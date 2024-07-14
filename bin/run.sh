@@ -22,6 +22,11 @@ run_lint() {
     poetry run lint
 }
 
+run_build() {
+    poetry run pyinstaller --name=tmux-wrangler --onefile src/cli/cli.py
+    poetry run pyinstaller tmux-wrangler.spec
+}
+
 fn_exists() { declare -F "$1" >/dev/null; }
 
 run() {
