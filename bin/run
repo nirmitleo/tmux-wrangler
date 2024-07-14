@@ -10,7 +10,7 @@ run_test() {
   poetry run test "${@}"
 }
 
-run_dev.reset() {
+run_reset() {
   rm -Rf .venv
 }
 
@@ -23,8 +23,11 @@ run_lint() {
 }
 
 run_build() {
-    poetry run pyinstaller --name=tmux-wrangler --onefile src/cli/cli.py
-    poetry run pyinstaller tmux-wrangler.spec
+    poetry run pyinstaller --name=tmuxw --onefile src/cli/cli.py
+}
+
+run_install() {
+  sudo cp dist/tmuxw /usr/local/bin
 }
 
 fn_exists() { declare -F "$1" >/dev/null; }
