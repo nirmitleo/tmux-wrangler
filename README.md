@@ -34,3 +34,14 @@ tmuxw
 ```bash
 tmuxw -w app1 -w app2 -w app3
 ```
+
+### Create a new session with name mysession, and app1, app2, and app3 windows
+
+```bash
+tmuxw mysession -w app1 -w app2 -w app3
+```
+
+Future Features
+
+- [ ] Add charm
+- [ ] Support for split panes
