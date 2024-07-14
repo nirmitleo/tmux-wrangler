@@ -37,6 +37,9 @@
             source ./venv/bin/activate
             echo "✅ Activated venv"
 
+            export PATH=bin:$PATH
+            echo $PATH
+
              # Verify Poetry installation
             poetry --version
           '';

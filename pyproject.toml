@@ -1,0 +1,49 @@
+[tool.poetry]
+name = "tmux-wrangler"
+version = "0.1.0"
+description = "composes multiple tmux command into one command that I use often"
+authors = ["Nirmit Dalal <nirmit.leo@gmail.com>"]
+readme = "README.md"
+packages = [{ include = "scripts" }]
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.13"
+click = "^8.1.7"
+returns = "^0.23.0"
+
+[tool.poetry.scripts]
+# Dev
+lint = "scripts.lint:lint"
+lint_fix = "scripts.lint:lint_fix"
+fix = "scripts.lint:fix"
+test = "scripts.test:test"
+type_check = "scripts.lint:type_check"
+
+# Prod
+sn = "src.cli.cli:create_tmux_session"
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.5.1"
+isort = "^5.13.2"
+mypy = "^1.10.1"
+pyinstaller = "^6.0.0"
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 120
+
+[tool.ruff]
+exclude = ["src/sync_correct"]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["F"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 18
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
