@@ -1,47 +1,112 @@
 # tmux-wrangler
 
-A python cli tool to manage tmux sessions, windows, and panes.
+A simple CLI tool to quickly create and manage tmux sessions with predefined window layouts.
+
+## Features
+
+- Automatically creates tmux sessions with customizable window names
+- Defaults to using the current directory name as the session name
+- Prevents duplicate sessions with the same name
+- Automatically attaches to the created session
+- Configurable window list via command-line options
 
 ## Installation
 
-To install tmux-wrangler, clone this repository and run the installation script:
+### Using Poetry
 
+1. Clone the repository:
 ```bash
 git clone https://github.com/yourusername/tmux-wrangler.git
 cd tmux-wrangler
-bin/run build
-bin/run install
 ```
+
+2. Install dependencies with Poetry:
+```bash
+poetry install
+```
+
+3. Run the tool:
+```bash
+poetry run tmuxw
+```
+
+### Using PyInstaller (for standalone binary)
+
+Build a standalone executable:
+```bash
+poetry run pyinstaller --onefile src/cli/cli.py -n tmuxw
+```
+
+The binary will be available in the `dist/` directory.
 
 ## Usage
 
-To see the available commands and options, run:
+### Basic Usage
 
-```bash
-tmuxw --help
-```
-
-## Most Common Commands
-
-### Create a new session with index, server, and test windows
-
+Create a tmux session with the default window layout (index, server, livebook, test):
 ```bash
 tmuxw
 ```
 
-### Create a new session with app1, app2, and app3 windows
+This will create a session named after your current directory.
 
+### Custom Session Name
+
+Specify a custom session name:
 ```bash
-tmuxw -w app1 -w app2 -w app3
+tmuxw my-project
 ```
 
-### Create a new session with name mysession, and app1, app2, and app3 windows
+### Custom Window Layout
 
+Define your own window names using the `-w` or `--windows` option:
 ```bash
-tmuxw mysession -w app1 -w app2 -w app3
+tmuxw my-project -w editor -w terminal -w logs -w debug
 ```
 
-Future Features
+## Default Behavior
 
-- [ ] Add charm
+- **Session Name**: Uses the current directory name if not specified
+- **Default Windows**: `index`, `server`, `livebook`, `test`
+- **Active Window**: Automatically switches to the `server` window if it exists
+- **Auto-attach**: Automatically attaches to the session after creation
+
+## Development
+
+### Running Tests
+```bash
+poetry run test
+```
+
+### Linting and Formatting
+```bash
+# Run linter
+poetry run lint
+
+# Fix linting issues
+poetry run lint_fix
+
+# Run type checking
+poetry run type_check
+```
+
+## Requirements
+
+- Python 3.12+
+- tmux installed on your system
+- Click (Python package)
+
+## Future Features
+
+- [ ] Add charm/TUI interface
 - [ ] Support for split panes
+- [ ] Session templates/profiles
+- [ ] Window-specific commands on creation
+
+## License
+
+MIT License
+
+## Author
+
+Nirmit Dalal

@@ -18,8 +18,9 @@
       in
       {
         devShell = pkgs.mkShell {
-          buildInputs = [ 
+          buildInputs = [
             pythonEnv
+            pkgs.just
           ];
           shellHook = ''
             export LANG=C.UTF-8
